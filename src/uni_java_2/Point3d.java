@@ -40,15 +40,32 @@ public class Point3d {
         this.z = cord;
     }
 
-    public static boolean isSamePoints(double[] cord1, double[] cord2 ){
-        if(cord1[0] == cord2[0] && cord1[1] == cord2[1] && cord1[2] == cord2[2]){
+    public static boolean isSamePoints(Point3d cord1, Point3d cord2 ){
+        double[] cord_list1 = new double[]{cord1.getX(), cord1.getY(), cord1.getZ()};
+        double[] cord_list2 = new double[]{cord2.getX(), cord2.getY(), cord2.getZ()} ;
+
+        if(cord_list1[0] == cord_list2[0] && cord_list1[1] == cord_list2[1] && cord_list1[2] == cord_list2[2]){
             return true;
         }
         else{return false;}
     }
 
-    public static double distanceTo(double[] cord1, double[] cord2 ){
-        double distance = Math.sqrt(Math.pow((cord1[0] - cord2[0]), 2) + Math.pow((cord1[1] - cord2[1]), 2) + Math.pow((cord1[2] - cord2[2]), 2));
-        return distance;
+    public static double distanceTo(Point3d cord1, Point3d cord2 ){
+        if(Point3d.isSamePoints(cord1,cord2) != true) {
+            double[] cord_list1 = new double[]{cord1.getX(), cord1.getY(), cord1.getZ()};
+            double[] cord_list2 = new double[]{cord2.getX(), cord2.getY(), cord2.getZ()};
+
+            double distance = Math.sqrt(
+                    Math.pow((cord_list1[0] - cord_list2[0]), 2) +
+                            Math.pow((cord_list1[1] - cord_list2[1]), 2) +
+                            Math.pow((cord_list1[2] - cord_list2[2]), 2)
+            );
+
+            return distance;
+        }
+        else{
+            System.out.println("points r same ");
+            return 0;
+        }
     }
 }
